@@ -39,7 +39,7 @@ public class TapDetector : MonoBehaviour
         {
             tapControl = true;
             hit.collider.gameObject.GetComponent<Enemy>().Dead(); //Essa faz com que apenas a formiga que eu toquei morra // esse ".GetComponent<Enemy>().Dead()" serve apenas para acessar a função Dead()
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
         }
     }
