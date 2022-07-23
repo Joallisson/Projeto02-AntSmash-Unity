@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
         Vector3 bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.safeArea.width, 0f, 0f)); //Com isso estamos pegando a largura da tela
         minX = -bounds.x + minDistance; //essa variável vai conter o valor em X da posição mínima do lado esquerdo
         maxX = bounds.x + maxDistance; //essa variável vai conter o valor em X da posição máxima do lado direito
-        Debug.Log("minX = " + minX + " maxX = " + maxX);
+        //Debug.Log("minX = " + minX + " maxX = " + maxX);
     }
 
     private void Spawn()
