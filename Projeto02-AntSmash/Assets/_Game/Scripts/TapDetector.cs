@@ -5,10 +5,11 @@ using UnityEngine;
 public class TapDetector : MonoBehaviour
 {
     private bool tapControl; //essa variavel é pra evitar toques desnecessários
+    private Enemy enemy;
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemy = GetComponent<Enemy>(); //Criando variavel do tipo da classe Enemy
     }
 
     // Update is called once per frame
@@ -32,12 +33,14 @@ public class TapDetector : MonoBehaviour
         }
     }
 
-    private void TapObject(RaycastHit2D hit)
+    private void TapObject(RaycastHit2D hit) //quando eu tocar na formiga na tela
     {
         if (hit.collider.gameObject.CompareTag("Enemy") && !tapControl) //Se tocarmos nas formigas
         {
             tapControl = true;
-            Debug.Log(hit.transform.name); 
+            hit.collider.gameObject.GetComponent<Enemy>().Dead(); //Essa faz com que apenas a formiga que eu toquei morra // esse ".GetComponent<Enemy>().Dead()" serve apenas para acessar a função Dead()
+            Debug.Log(hit.transform.name);
+
         }
     }
 } 

@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  sprites:
+  - {fileID: 12357580106090457}
+  - {fileID: 12357579256012737}
 --- !u!61 &12357580796276942
 BoxCollider2D:
   m_ObjectHideFlags: 0
