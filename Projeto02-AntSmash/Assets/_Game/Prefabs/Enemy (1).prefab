@@ -217,6 +217,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 1798808972221492750}
   - {fileID: 1798808971475264609}
+  score: 10
 --- !u!61 &1798808972263576244
 BoxCollider2D:
   m_ObjectHideFlags: 0
