@@ -9,11 +9,12 @@ public class UIController : MonoBehaviour
     private GameController gameController;
     public TMP_Text txtScore; //variavel que guarda a pontuação
     public Image[] imageLifes; //criando array de vidas do jogador
-    public GameObject panelGame, panelPause, allLifes;
+    public GameObject panelGame, panelPause, panelMainMenu, allLifes;
     // Start is called before the first frame update
     void Start()
     {
-        panelGame.gameObject.SetActive(true); //ativando o painel do jogo
+        panelMainMenu.gameObject.SetActive(true); //o jogo já começa com o painel principal do jogo ativado
+        panelGame.gameObject.SetActive(false); //ativando o painel do jogo
         panelPause.gameObject.SetActive(false); //desativando o painel de pause
         gameController = FindObjectOfType<GameController>();
     }
@@ -27,6 +28,19 @@ public class UIController : MonoBehaviour
     public void UpdateScore(int score)
     {
         txtScore.text = score.ToString(); //converte a pontuação em string
+    }
+
+    public void ButtonStartGame() //iniciando o jogo
+    {
+        panelMainMenu.gameObject.SetActive(false);
+        panelGame.gameObject.SetActive(true);
+        gameController.StartGame();
+    }
+
+    public void ButtonExitGame() //saindo do jogo no android
+    {
+        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.unityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+        activity.Call<bool>("moveTaskToBack", true);
     }
 
     public void ButtonPause()
@@ -58,7 +72,7 @@ public class UIController : MonoBehaviour
 
     public void ButtonBackMainMenu() //voltando para o menu principal
     {
-        Time.timeScale = 1f; //Saindo do pause
+        Time.timeScale = 1f; //Saindo do pause 
         panelGame.gameObject.SetActive(false);
         panelPause.gameObject.SetActive(false);
     }
