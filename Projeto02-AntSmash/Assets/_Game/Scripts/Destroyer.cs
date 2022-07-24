@@ -24,6 +24,7 @@ public class Destroyer : MonoBehaviour
             }
             else
             {
+                uIController.imageLifes[gameController.enemyCount - 1].gameObject.SetActive(false); //quando o inimigo for destruido pelo Destroyer desaparece uma vida dele na interface de usuário
                 Debug.Log("Game Over");
             }
 

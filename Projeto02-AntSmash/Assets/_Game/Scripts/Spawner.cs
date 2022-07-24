@@ -7,10 +7,12 @@ public class Spawner : MonoBehaviour
     private float minX, maxX, nextSpawn;
     [SerializeField] private float minDistance, maxDistance, spawnTime; //Distancia maxima e minima que as formigas serão spawnadas
     [SerializeField] private GameObject[] enemies; //Criando o array das formigas
+    private GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
         nextSpawn = Time.time; //pega o tempo do frame inicial
+        gameController = FindObjectOfType<GameController>();
         SetMinAndMaxX();
     }
 
@@ -33,7 +35,9 @@ public class Spawner : MonoBehaviour
         if(Time.time > nextSpawn) //Se o tempo atual for maior que nextSpawn
         {
             Vector2 position = new Vector2(Random.Range(minX, maxX), transform.position.y); //definindo a posição aleatória de onde as formigas vão surgir
-            Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector2(position.x, position.y), Quaternion.Euler(0f, 0f, 0f)); //gerando os tipos de formigas aleatoriamente, depois definido a posição de origem das formigas que serão instanciadas e depois a rotação delas
+            //criando variável do tipo GameObject para armazenar todas as formigas instanciadas
+            GameObject tempEnemy = Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector2(position.x, position.y), Quaternion.Euler(0f, 0f, 0f)); //gerando os tipos de formigas aleatoriamente, depois definido a posição de origem das formigas que serão instanciadas e depois a rotação delas
+            tempEnemy.transform.parent = gameController.allEnemiesParent; //Transformando o atributo allEnemiesParent da classe GameController em Pai de todas as formigas instanciadas
             nextSpawn = Time.time + spawnTime; //tempo que as formigas serão instanciadas
         }
     }
