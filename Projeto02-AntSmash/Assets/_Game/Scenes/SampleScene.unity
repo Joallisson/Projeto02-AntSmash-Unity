@@ -197,6 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtScore: {fileID: 1091242776}
+  imageLifes:
+  - {fileID: 1851944882}
+  - {fileID: 732700799}
+  - {fileID: 268853101}
+  - {fileID: 1255497081}
+  - {fileID: 548551800}
 --- !u!4 &244754338
 Transform:
   m_ObjectHideFlags: 0
@@ -304,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &449599952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,6 +1027,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f972740f549823e4b86614db8fce2c44, type: 3}
   - {fileID: 8300000, guid: c4cedeb4fd8b4e648adb0602c8c8b914, type: 3}
   totalScore: 0
+  enemyCount: 0
 --- !u!4 &1271977793
 Transform:
   m_ObjectHideFlags: 0
@@ -1121,7 +1128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307154860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.74, z: 0}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

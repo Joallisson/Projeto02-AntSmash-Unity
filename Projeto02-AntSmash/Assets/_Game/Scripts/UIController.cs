@@ -7,6 +7,7 @@ using TMPro; ////biblioteca usada para trabalhar com a o Text Mesh Pro
 public class UIController : MonoBehaviour
 {
     public TMP_Text txtScore; //variavel que guarda a pontuação
+    public Image[] imageLifes; //criando array de vidas do jogador
     // Start is called before the first frame update
     void Start()
     {
