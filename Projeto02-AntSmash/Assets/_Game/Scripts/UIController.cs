@@ -7,7 +7,7 @@ using TMPro; ////biblioteca usada para trabalhar com a o Text Mesh Pro
 public class UIController : MonoBehaviour
 {
     private GameController gameController;
-    public TMP_Text txtScore; //variavel que guarda a pontuação
+    public TMP_Text txtScore, txtHighScore; //variavel que guarda a pontuação
     public Image[] imageLifes; //criando array de vidas do jogador
     public GameObject panelGame, panelPause, panelMainMenu, allLifes;
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
         panelGame.gameObject.SetActive(false); //ativando o painel do jogo
         panelPause.gameObject.SetActive(false); //desativando o painel de pause
         gameController = FindObjectOfType<GameController>();
+        txtHighScore.text = "High Score: " + gameController.highScore.ToString();
     }
 
     // Update is called once per frame

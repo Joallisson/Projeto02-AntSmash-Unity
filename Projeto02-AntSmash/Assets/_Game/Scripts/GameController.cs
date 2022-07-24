@@ -10,10 +10,12 @@ public class GameController : MonoBehaviour
     private UIController uIController;
     public Transform allEnemiesParent; //todos os inimigos presentes na tela quando o jogo é reiniciado
     private Spawner spawer; //para ativar e desativar a criação das formigas
+    [HideInInspector] public int highScore;
 
     private void Awake() {
         uIController = FindObjectOfType<UIController>();
         spawer = FindObjectOfType<Spawner>();
+        highScore = GetScore();
     }
 
     // Start is called before the first frame update
@@ -50,4 +52,21 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+    public void SaveScore()
+    {
+        if (totalScore > highScore) //se a pontuação atual for maior que a maior pontuação, então guarda essa puntuação atual na chave "highscore"
+        {
+            PlayerPrefs.SetInt("highscore", totalScore); //setando a maior pontuação
+            uIController.txtHighScore.text = "High Score: " + totalScore.ToString();
+        }
+        
+    }
+
+    public int GetScore() //recuperando amaior pontuação setada no SaveScore()
+    {
+        highScore = PlayerPrefs.GetInt("highscore");
+        return highScore;
+    }
+
 }
