@@ -9,21 +9,19 @@ public class UIController : MonoBehaviour
     private GameController gameController;
     public TMP_Text txtScore, txtHighScore; //variavel que guarda a pontuação
     public Image[] imageLifes; //criando array de vidas do jogador
-    public GameObject panelGame, panelPause, panelMainMenu, allLifes;
+    [SerializeField] private GameObject panelGame, panelPause, panelMainMenu, allLifes;
     // Start is called before the first frame update
     void Start()
     {
+        Initialized();
+    }
+
+    private void Initialized() {
         panelMainMenu.gameObject.SetActive(true); //o jogo já começa com o painel principal do jogo ativado
         panelGame.gameObject.SetActive(false); //ativando o painel do jogo
         panelPause.gameObject.SetActive(false); //desativando o painel de pause
         gameController = FindObjectOfType<GameController>();
         txtHighScore.text = "High Score: " + gameController.highScore.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateScore(int score)
