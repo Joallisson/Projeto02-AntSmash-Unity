@@ -7,7 +7,7 @@ using TMPro; ////biblioteca usada para trabalhar com a o Text Mesh Pro
 public class UIController : MonoBehaviour
 {
     private GameController gameController;
-    public TMP_Text txtScore, txtHighScore; //variavel que guarda a pontuação
+    public TMP_Text txtScore, txtHighScore, txtFinalScore; //variavel que guarda a pontuação
     public Image[] imageLifes; //criando array de vidas do jogador
     [SerializeField] private GameObject panelGame, panelPause, panelMainMenu, allLifes;
     public GameObject panelGameOver;
@@ -78,7 +78,8 @@ public class UIController : MonoBehaviour
         panelGame.gameObject.SetActive(false);
         panelGameOver.gameObject.SetActive(false);
         panelPause.gameObject.SetActive(false);
-        panelMainMenu.gameObject.SetActive(true);;
+        panelMainMenu.gameObject.SetActive(true);
+        gameController.BackMainMenu();
     }
 
 }

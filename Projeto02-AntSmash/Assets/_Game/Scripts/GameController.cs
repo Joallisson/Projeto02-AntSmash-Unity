@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public Transform allEnemiesParent; //todos os inimigos presentes na tela quando o jogo é reiniciado
     private Spawner spawer; //para ativar e desativar a criação das formigas
     private Destroyer destroyer;
+    [SerializeField] private AudioSource music; //musica do jogo
 
     private void Awake() {
         uIController = FindObjectOfType<UIController>();
@@ -24,12 +25,14 @@ public class GameController : MonoBehaviour
         totalScore = 0;
         enemyCount = 0;
         spawer.gameObject.GetComponent<Spawner>().enabled = false; //no começo do jogo o GameObject Spawer começa desativado
+        music.volume = 0.5f;
     }
 
     public void GameOver() //Quando o jogador perder a partida
     {
         spawer.gameObject.GetComponent<Spawner>().enabled = false; //desativa o script que faz as formigas aparecerem
         destroyer.gameObject.GetComponent<BoxCollider2D>().enabled = false; //desativa o script que faz as formigas morrerem
+        uIController.txtFinalScore.text = "Score: " + totalScore.ToString(); //quando terminar o jogo, mostrar os pontos totais
 
         //destroi todas as formigas no gameover
         foreach (Transform child in allEnemiesParent.transform) //percorre dentro do pai que contem todos os inimigos/formigas e destroi todas elas asim que o botão restart é pressionado
@@ -63,6 +66,30 @@ public class GameController : MonoBehaviour
         enemyCount = 0;
         uIController.txtScore.text = totalScore.ToString();
         spawer.gameObject.GetComponent<Spawner>().enabled = true;
+        music.volume = 0.25f;
+    }
+
+    public void BackMainMenu() //quando voltar pro menu principal aumenta volume do jogo
+    {
+        music.volume = 0.5f;
+        totalScore = 0;
+        enemyCount = 0;
+        uIController.txtScore.text = totalScore.ToString(); //zerando a pontução da tela do usuário
+        destroyer.gameObject.GetComponent<BoxCollider2D>().enabled = true; //desativa o script que faz as formigas morrerem
+        spawer.gameObject.GetComponent<Spawner>().enabled = false; //desativando a criação das formigas
+
+
+        //ativar todas as imagens da vida do jogador
+        for (int i = 0; i < uIController.imageLifes.Length; i++)
+        {
+            uIController.imageLifes[i].gameObject.SetActive(true);
+        }
+
+        //destrói todos os inimigos quando volta pro menu principal
+        foreach (Transform child in allEnemiesParent.transform) //percorre dentro do pai que contem todos os inimigos/formigas e destroi todas elas asim que o botão restart é pressionado
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void Restart()
