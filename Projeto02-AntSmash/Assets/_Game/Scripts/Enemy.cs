@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
     private Animator myAnimator;
     [SerializeField] private GameObject[] sprites; //variavel que vai conter os sprites/objetos filhos das formigas
     private GameController gameController;
-    public int score; //pontuação individual de cada inimigo
+    [SerializeField] private int score; //pontuação individual de cada inimigo
     private UIController uIController;
     // Start is called before the first frame update
     void Start()

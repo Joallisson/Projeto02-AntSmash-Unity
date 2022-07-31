@@ -16,21 +16,7 @@ public class Destroyer : MonoBehaviour
 
         if (target.gameObject.CompareTag("Enemy"))
         {
-            gameController.enemyCount++; //quando o inimigo for destruido pelo GameObject Destroyer incrementa mais um na varável enemyCount
-
-            if (gameController.enemyCount < 5) //Se a vida do usuário não tiver acabado
-            {
-                uIController.imageLifes[gameController.enemyCount - 1].gameObject.SetActive(false); //quando o inimigo for destruido pelo Destroyer desaparece uma vida dele na interface de usuário
-            }
-            else
-            {
-                uIController.imageLifes[gameController.enemyCount - 1].gameObject.SetActive(false); //quando o inimigo for destruido pelo Destroyer desaparece uma vida dele na interface de usuário
-                gameController.SaveScore(); //se as vidas acabarem setar a maior pontuação para o highScore no script GameController
-                Debug.Log("Game Over");
-            }
-
-            
-            Destroy(target.gameObject); //destrói a formiga
+            gameController.DestroyEnemy(target);
         }
     }
 }

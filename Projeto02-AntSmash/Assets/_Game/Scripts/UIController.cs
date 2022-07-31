@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public TMP_Text txtScore, txtHighScore; //variavel que guarda a pontuação
     public Image[] imageLifes; //criando array de vidas do jogador
     [SerializeField] private GameObject panelGame, panelPause, panelMainMenu, allLifes;
+    public GameObject panelGameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class UIController : MonoBehaviour
 
     private void Initialized() {
         panelMainMenu.gameObject.SetActive(true); //o jogo já começa com o painel principal do jogo ativado
+        panelGameOver.gameObject.SetActive(false); //o painel do game over começa desativado
         panelGame.gameObject.SetActive(false); //ativando o painel do jogo
         panelPause.gameObject.SetActive(false); //desativando o painel de pause
         gameController = FindObjectOfType<GameController>();
@@ -61,6 +63,7 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1f; //Saindo do pause
         panelGame.gameObject.SetActive(true);  //ativando o painel do jogo 
         panelPause.gameObject.SetActive(false); //desativando o painel de pause
+        panelGameOver.gameObject.SetActive(false); //desativando o painel de game over
         gameController.Restart();
 
         foreach(Transform child in allLifes.transform) //percorre o pai de todas as imagens de vida e ativa cada uma delas para aprecerem na tela do jogo
@@ -73,7 +76,9 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1f; //Saindo do pause 
         panelGame.gameObject.SetActive(false);
+        panelGameOver.gameObject.SetActive(false);
         panelPause.gameObject.SetActive(false);
+        panelMainMenu.gameObject.SetActive(true);;
     }
 
 }
