@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
 
     public void ButtonExitGame() //saindo do jogo no android
     {
-        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.unityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
         activity.Call<bool>("moveTaskToBack", true);
     }
 
