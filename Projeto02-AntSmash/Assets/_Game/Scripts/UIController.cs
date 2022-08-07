@@ -40,6 +40,8 @@ public class UIController : MonoBehaviour
 
     public void ButtonExitGame() //saindo do jogo no android
     {
+        PlayerPrefs.SetInt("highscore", 0); //apaga a maior pontuação quando o jogador sai do jogo
+
         AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
         activity.Call<bool>("moveTaskToBack", true);
     }
@@ -80,6 +82,8 @@ public class UIController : MonoBehaviour
         panelPause.gameObject.SetActive(false);
         panelMainMenu.gameObject.SetActive(true);
         gameController.BackMainMenu();
+
+        txtHighScore.text =  "High Score: " + gameController.GetScore().ToString();
     }
 
 }

@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &129309274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2770,6 +2770,8 @@ MonoBehaviour:
   highScore: 0
   allEnemiesParent: {fileID: 574261766}
   music: {fileID: 1259342993}
+  incrementSpeed: 0.1
+  countSpeed: 0
 --- !u!4 &1271977793
 Transform:
   m_ObjectHideFlags: 0
@@ -2801,7 +2803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1296256489
 RectTransform:
   m_ObjectHideFlags: 0

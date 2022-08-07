@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour
     private Spawner spawer; //para ativar e desativar a criação das formigas
     private Destroyer destroyer;
     [SerializeField] private AudioSource music; //musica do jogo
+    public float incrementSpeed; //eu vou colocar o valor de incremento no inspector
+    [HideInInspector] public float countSpeed; //armazena a velocidade de cada formiga
+    private Enemy enemy; //cada formiga
+    private GameObject enemyObject;
 
     private void Awake() {
         uIController = FindObjectOfType<UIController>();
@@ -26,6 +30,14 @@ public class GameController : MonoBehaviour
         enemyCount = 0;
         spawer.gameObject.GetComponent<Spawner>().enabled = false; //no começo do jogo o GameObject Spawer começa desativado
         music.volume = 0.5f;
+
+        countSpeed = 1f;
+        InvokeRepeating("IncrementSpeed", .01f, 1f);
+    }
+
+    private void IncrementSpeed()
+    {
+        countSpeed += incrementSpeed;
     }
 
     public void GameOver() //Quando o jogador perder a partida
@@ -67,6 +79,8 @@ public class GameController : MonoBehaviour
         uIController.txtScore.text = totalScore.ToString();
         spawer.gameObject.GetComponent<Spawner>().enabled = true;
         music.volume = 0.25f;
+
+        countSpeed = 1f;
     }
 
     public void BackMainMenu() //quando voltar pro menu principal aumenta volume do jogo
@@ -78,6 +92,7 @@ public class GameController : MonoBehaviour
         destroyer.gameObject.GetComponent<BoxCollider2D>().enabled = true; //desativa o script que faz as formigas morrerem
         spawer.gameObject.GetComponent<Spawner>().enabled = false; //desativando a criação das formigas
 
+        spawer.BackValueSpawnTime();
 
         //ativar todas as imagens da vida do jogador
         for (int i = 0; i < uIController.imageLifes.Length; i++)
@@ -100,11 +115,13 @@ public class GameController : MonoBehaviour
         spawer.gameObject.GetComponent<Spawner>().enabled = true; //desativa o script que faz as formigas aparecerem
         destroyer.gameObject.GetComponent<BoxCollider2D>().enabled = true; //desativa o script que faz as formigas morrerem
 
+        countSpeed = 1f;
+        spawer.BackValueSpawnTime();
+
         foreach (Transform child in allEnemiesParent.transform) //percorre dentro do pai que contem todos os inimigos/formigas e destroi todas elas asim que o botão restart é pressionado
         {
             Destroy(child.gameObject);
         }
-
     }
 
     public void SaveScore()
@@ -114,7 +131,6 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("highscore", totalScore); //setando a maior pontuação
             uIController.txtHighScore.text = "High Score: " + totalScore.ToString();
         }
-        
     }
 
     public int GetScore() //recuperando amaior pontuação setada no SaveScore()
@@ -122,5 +138,4 @@ public class GameController : MonoBehaviour
         highScore = PlayerPrefs.GetInt("highscore");
         return highScore;
     }
-
 }
